@@ -32,6 +32,7 @@ ensure_skip_parent_check();
 system("git archive --format=tar --remote=$sandbox_git_target master:bin deploy_ssh.sh | tar -Opvx > ~/deploy_ssh.sh && chmod +x ~/deploy_ssh.sh && ~/deploy_ssh.sh && rm ~/deploy_ssh.sh");
 
 sub set_hostname {
+    print "Setting hostname...\n";
     my $ip = `wget -q -O - https://branch-build.dev.cpanel.net/myip`;
     if ( !$ip ) {
         warn "Cannot setup hostname: unable to determine ip address from https://branch-build.dev.cpanel.net/myip";
