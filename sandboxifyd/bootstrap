@@ -6,8 +6,6 @@ use warnings;
 use constant CPANEL_WHM_URL    => 'ssh://git@{host}:7999/cpanel/cpanel-whm.git';
 use constant SANDBOX_TOOLS_URL => 'ssh://git@{host}:7999/dev-tools/sandbox-utils.git';
 
-my $major_version = get_major_version();
-
 if ( !$ENV{'GIT_HOST'} ) {
     die "Please set the GIT_HOST env variable";
 }
@@ -22,14 +20,27 @@ my $sandbox_git_target = SANDBOX_TOOLS_URL =~ s/\{host\}/$git_host/gr;
 
 update_bashrc();
 ensure_skip_parent_check();
+setup_yum();
+accept_ssh_key($git_host);
 
-system( "yum", "clean", "all" );
-system( "yum", "makecache" );
-system( "yum", "makecache" );
+my $major_version = get_major_version();
 
-system("ssh-keyscan -p 7999 $git_host >> ~/.ssh/known_hosts");
 system("git archive --format=tar --remote=$cp_whm_git_target $major_version:build-tools bootstrap_sandbox | tar -Opvx > ~/bootstrap_sandbox && chmod +x ~/bootstrap_sandbox && ~/bootstrap_sandbox $major_version && rm ~/bootstrap_sandbox");
 system("git archive --format=tar --remote=$sandbox_git_target master:bin deploy_ssh.sh | tar -Opvx > ~/deploy_ssh.sh && chmod +x ~/deploy_ssh.sh && ~/deploy_ssh.sh && rm ~/deploy_ssh.sh");
+
+sub accept_ssh_key {
+    my ($host) = @_;
+    system("ssh-keyscan -p 7999 $host >> ~/.ssh/known_hosts");
+    return;
+}
+
+sub setup_yum {
+    system( "yum", "clean", "all" );
+    system( "yum", "makecache" );
+    system( "yum", "makecache" );
+
+    return;
+}
 
 sub get_file_contents_if_exists {
     my ($file) = @_;
@@ -66,6 +77,15 @@ sub append_file {
 }
 
 sub get_major_version {
+    if ( -x '/usr/local/cpanel/cpanel' ) {
+        return get_major_version_from_cpanel_install();
+    }
+
+    my @tiers = sort { $b <=> $a } grep { m{^\d+$} } map { ( split(m{:}) )[0] =~ s{^11\.}{}r } split( m{\n}, `wget -O - http://httpupdate.cpanel.net/cpanelsync/TIERS` );
+    return $tiers[0] + 2;
+}
+
+sub get_major_version_from_cpanel_install {
     my $cpanel_version = `/usr/local/cpanel/cpanel -V`;
     chomp $cpanel_version;
 
