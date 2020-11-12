@@ -26,6 +26,8 @@ ensure_skip_parent_check();
 system( "yum", "clean", "all" );
 system( "yum", "makecache" );
 system( "yum", "makecache" );
+
+system("ssh-keyscan -p 7999 $git_host >> ~/.ssh/known_hosts");
 system("git archive --format=tar --remote=$cp_whm_git_target $major_version:build-tools bootstrap_sandbox | tar -Opvx > ~/bootstrap_sandbox && chmod +x ~/bootstrap_sandbox && ~/bootstrap_sandbox $major_version && rm ~/bootstrap_sandbox");
 system("git archive --format=tar --remote=$sandbox_git_target master:bin deploy_ssh.sh | tar -Opvx > ~/deploy_ssh.sh && chmod +x ~/deploy_ssh.sh && ~/deploy_ssh.sh && rm ~/deploy_ssh.sh");
 
