@@ -27,7 +27,7 @@ sub get_file_contents_if_exists {
     my ($file) = @_;
     if ( open( my $fh, '<', $file ) ) {
         local $/;
-        return readline($bashrc);
+        return readline($fh);
     }
     return '';
 }
@@ -44,7 +44,8 @@ sub update_bashrc {
     if ( get_file_contents_if_exists('/root/.bashrc') =~ m{build-tools} ) {
         return;
     }
-    append_file( '/root/.bashrc', qq{\n\nexport PATH="/usr/local/cpanel/3rdparty/bin:/usr/local/cpanel/build-tools:/usr/local/sandbox-utils/bin:/usr/local/cpanel/t/qa/bin:\$PATH"\n\n} ) chmod( 0700, "/root/.bashrc" );
+    append_file( '/root/.bashrc', qq{\n\nexport PATH="/usr/local/cpanel/3rdparty/bin:/usr/local/cpanel/build-tools:/usr/local/sandbox-utils/bin:/usr/local/cpanel/t/qa/bin:\$PATH"\n\n} );
+    chmod( 0700, "/root/.bashrc" );
     return;
 }
 
