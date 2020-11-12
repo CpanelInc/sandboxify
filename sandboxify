@@ -1,15 +1,15 @@
 #!/bin/sh
 # This script was generated using Makeself 2.1.3
 
-CRCsum="2078926862"
-MD5="3a61acbf5315627a5c61f171ba57b7b5"
+CRCsum="1725100582"
+MD5="6443800247ac31ebee433a09a0ab6615"
 TMPROOT=${TMPDIR:=/home/cPanelInstall}
 
 label="cPanel & WHM sandboxifyer"
 script="./bootstrap"
 scriptargs=""
 targetdir="sandboxifyd"
-filesizes="1021"
+filesizes="930"
 keep=n
 
 print_cmd_arg=""
@@ -151,9 +151,9 @@ do
     echo Installer Revision: "$REVISION"
 	echo Identification: "$label"
 	echo Target directory: "$targetdir"
-	echo Uncompressed size: 16 KB
+	echo Uncompressed size: 8 KB
 	echo Compression: gzip
-	echo Date of packaging: Wed Nov 11 23:09:34 CST 2020
+	echo Date of packaging: Wed Nov 11 23:12:17 CST 2020
 	echo Built with Makeself version 2.1.3 on linux-gnu
 	echo Build command was: "utils/makeself sandboxifyd sandboxify cPanel & WHM sandboxifyer ./bootstrap"
 	if test x$script != x; then
@@ -180,7 +180,7 @@ do
 	echo filesizes=\"$filesizes\"
 	echo CRCsum=\"$CRCsum\"
 	echo MD5sum=\"$MD5\"
-	echo OLDUSIZE=16
+	echo OLDUSIZE=8
 	echo OLDSKIP=403
 	exit 0
 	;;
@@ -350,7 +350,7 @@ fi
 offset=`head -n 402 "$0" | wc -c | tr -d " "`
 
 if test x"$verbose" = xy; then
-	MS_Printf "About to extract 16 KB in $tmpdir ... Proceed ? [Y/n] "
+	MS_Printf "About to extract 8 KB in $tmpdir ... Proceed ? [Y/n] "
 	read yn
 	if test x"$yn" = xn; then
 		eval $finish; exit 1
@@ -400,9 +400,4 @@ if test "$keep" = n; then
 fi
 eval $finish; exit $res
 
-‹ ŽÃ¬_íVmsÚFæ3¿bMic@‚CñÄ“qK§iì©íôCé(B:ÐÅzóÝñPòÛ»'!,Ap›L·Ó{¾´«Õî³{«g†‚fE…§CÑítâ+bûÚ>jwF»Ûi/#ý£Ó>*@³ð0ãÂb †D<æ÷Wöÿ(¾9Ðgœécèa^±8ãp ¨-úñï;‹4˜ò~b²Ã 	¼¾8}{öÆüuø³yýËœ€Æ¹ÛÓõ)¯–nÈÅª×=>>ÖíÈ
-ˆ·¾Ôï\¿†óï¡ì[BfÎ	ã4` S"ÌÜ½J=é*pP>{ûn©ýðã•9<¿¼ÒVP…e%Pºðˆ%S'„K uÌan1j=RêWùh——Cóôújh^ž¿þiOH,9 ¶€;*\À¡~š’`-¦,ŸÀv†ýÎ–†.Û´}®bºF+}MŸ2ÉwäX‚˜c‹»Ì–D€Ï1ùÌÈb$¦íû&&‰ßsAüJ	c€Ål—Î	Ôë“ù–È¯×ñCAÙŒòègÔsê"=ãt5˜Ü
-œq¸€? ŽsÍpõ]/ÀvýÐÃÅ>û§noÍz1ÿSŽ¥¸ÐÙ8ž“	õˆ‰ÍÈ7éÄ$Ê_w™¯”¥KYeöã›qëÃˆi/OÜhßi5ˆ±ùiû%¼Ð¶<(ëýÍFÄŒx±Ã»ÕÄº*fìšO‡Ls_ÃÖ¯‰Å“T:“^xÆ qØ¥ÑhŒ‚R&íGJ®h:Žxþ¤5ÐmB§ZUÎ˜¿”)$áãèc•+6I=[Œ!MNüÆ
-<¿¥Q°S‡57iè5%¹¡Îóp-M’].[½‘ø|&ÙGÓâ3Sý™eç¢Õàöv9
-FYD!pqz5”âýKJP›9H†¸—[µ·kÎd“µ®G¼>Ôã{ú­›Feùò’Lf•¼
-4»Í&6%—ú¾fdªÍ›ä8à©ÀvX=?[Gçä$svB–lÍï-üï€cïÄÜƒòÁº…I¯—`•¼`“ÌÎîH©œÔŸùP¼ß%'¹@ýÝû”Ð¶Åý‘ÆÜþö`^,žGÅþrÄWµWã’ø­ù»äóa"·B}-8@37jyŸÃÃtè²›#ï#‰yòïÿfÅâ¤Üüô_óõ_«Õm)ý§ôŸÒJÿ)ý§ôŸÒJÿ)ý÷´úO8÷Ï£ÿŒŽÑZë?ãe»Ù’ú¥ ÒÏ¦ÿ”ÈÛy_¤àþšLî°¯¸ÀÿÖþNÖ÷Ã²þGvõó®j…/ÆŸ?VÓÙ (  
+‹ 1Ä¬_íUßsÚFæ™¿bMic@Pj3†â‰'ã–LÒØSÛéCé(‡8Ð5ÒI¾;0Jþöî#Ap›‡v¦3÷½h?íí~ûC“8VR	’”þ=´½“s"vÏîi·Wêt{'ÝÎ÷Óò:“îi	Ú¥ÿ ©ˆ (	â9ÞßÙÿ§øæÈ]HáNw*Âry!)`C0_Ìï"8ãs9HM~ÌQ0®àÕõÅ»Ë·Þ¯£Ÿ½»_ÞÂð)ƒ¾ëÎ™z¹b©6ýÞÙÙ™ë'„Óp{4‚¨…ÝEPÈ±ð–THsÂœ*¯ð¬VG&›AŽª—ïÞ¯Ÿ^ßz£«›[guX—1e*×!%:tª@2P¾„%ŒLBZ”7Eo77#ïâîväÝ\½zsÀ%¦Ì©¯à© 0Gh^¤Žt˜‹§“Åw†°áà‰‚=†©!eW¶O Ý±‘k¼qŸ¼¹s¡õN¦DQoBd |-år!¨'?²ÄKˆ \y~@ýF$ù(jôDø[Rh6g±ˆˆêo6bE‡ùˆŠèO,œ6U‡&Ùjð$áÓI¼‚?Áø¹J–+8‡Oî>ãÅðƒ(žÂñêýKwú Y"ú±b]LLŸÌXH=,ŽB¤Çf]1©ä¶‚¨|­ª)uTý¥70Méã„òš¶WgAœœ"?+¿Fû$„ª;xz"¨ZŽ™†ŒStÔSë¦œ³;Žéæ¡‚m¯IÃIª\jÎ¤0”V«5æ•\ØÏ¤\s\lñâ¤µ6cs§®{,ZëR÷Æû°³)$›†žO†$(ÓÔÜXƒgü7 2æ{Þ1tØj“¹ÞJRhê¢wÚ¤upõ²u[)ç+…È¿š%Ÿëê¯L»à­÷÷ë1sºJb¡àúâv4¬˜ýiš%¨+¦(†zÔ[µ¿oÎE“·n[¼¹P,”^Uî=1¦qU_^ÑÁl2¡ÍàÕ Ýk·±(…Ð#—mnlÒqÀ©ÀrÈÏÏÎèœŸçf'éÖü‘àÿ)¨Ø°SsªGÛ¦µ^£ƒMzÁS0{»ÿsHÕ4ÿÜ‡âÃ¾8éÍ÷2=â(Ù}÷Gæs÷ÛƒqÕ0y™„Dë±<Þ4ö®Æ%ñ[ûw­ççŽÜqõ-|GChZ­È9>Îš.¿9Š-LÉÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂÂâŸà/í×Å± (  
