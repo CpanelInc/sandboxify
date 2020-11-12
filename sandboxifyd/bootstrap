@@ -1,2 +1,34 @@
 #!/usr/bin/perl
 
+use strict;
+use warnings;
+
+use constant CPANEL_WHM_URL => 'ssh://git@{host}:7999/cpanel/cpanel-whm.git';
+
+my $major_version = get_major_version();
+
+if ( !$ENV{'GIT_HOST'} ) {
+    die "Please set the GIT_HOST env variable";
+}
+
+if ( !$ENV{'SSH_AUTH_SOCK'} ) {
+    die "Please connect with ssh -A";
+}
+
+my $git_host   = $ENV{'GIT_HOST'};
+my $git_target = CPANEL_WHM_URL =~ s/\{host\}/$git_host/gr;
+
+system("git archive --format=tar --remote=$git_target $major_version:build-tools bootstrap_sandbox | tar -Opvx > ~/bootstrap_sandbox && chmod +x ~/bootstrap_sandbox && ~/bootstrap_sandbox $major_version && rm ~/bootstrap_sandbox");
+
+sub get_major_version {
+    my $cpanel_version = `/usr/local/cpanel/cpanel -V`;
+    chomp $cpanel_version;
+
+    my $major_version = int( ( split( m{\s+}, $cpanel_version ) )[0] );
+
+    if ( $major_version % 2 != 0 ) {
+        $major_version++;
+    }
+
+    return $major_version;
+}
