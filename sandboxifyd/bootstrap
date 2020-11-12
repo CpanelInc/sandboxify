@@ -18,6 +18,7 @@ my $git_host           = $ENV{'GIT_HOST'};
 my $cp_whm_git_target  = CPANEL_WHM_URL    =~ s/\{host\}/$git_host/gr;
 my $sandbox_git_target = SANDBOX_TOOLS_URL =~ s/\{host\}/$git_host/gr;
 
+set_hostname();
 update_bashrc();
 setup_yum();
 accept_ssh_key($git_host);
@@ -29,6 +30,19 @@ system("git archive --format=tar --remote=$cp_whm_git_target $major_version:buil
 ensure_skip_parent_check();
 
 system("git archive --format=tar --remote=$sandbox_git_target master:bin deploy_ssh.sh | tar -Opvx > ~/deploy_ssh.sh && chmod +x ~/deploy_ssh.sh && ~/deploy_ssh.sh && rm ~/deploy_ssh.sh");
+
+sub set_hostname {
+    my $ip = `wget -q -O - https://branch-build.dev.cpanel.net/myip`;
+    if ( !$ip ) {
+        warn "Cannot setup hostname: unable to determine ip address from https://branch-build.dev.cpanel.net/myip";
+        return;
+    }
+    my $shorthostname = $ip =~ s{\.}{-}g;
+    my $hostname      = "$shorthostname.cprapid.com";
+    system( "hostnamectl", "set-hostname", $hostname );
+    system( "hostname", $hostname );
+    return;
+}
 
 sub accept_ssh_key {
     my ($host) = @_;
