@@ -3,7 +3,8 @@
 use strict;
 use warnings;
 
-use constant CPANEL_WHM_URL => 'ssh://git@{host}:7999/cpanel/cpanel-whm.git';
+use constant CPANEL_WHM_URL    => 'ssh://git@{host}:7999/cpanel/cpanel-whm.git';
+use constant SANDBOX_TOOLS_URL => 'ssh://git@{host}:7999/dev-tools/sandbox-utils.git';
 
 my $major_version = get_major_version();
 
@@ -15,13 +16,15 @@ if ( !$ENV{'SSH_AUTH_SOCK'} ) {
     die "Please connect with ssh -A";
 }
 
-my $git_host   = $ENV{'GIT_HOST'};
-my $git_target = CPANEL_WHM_URL =~ s/\{host\}/$git_host/gr;
+my $git_host           = $ENV{'GIT_HOST'};
+my $cp_whm_git_target  = CPANEL_WHM_URL    =~ s/\{host\}/$git_host/gr;
+my $sandbox_git_target = SANDBOX_TOOLS_URL =~ s/\{host\}/$git_host/gr;
 
 update_bashrc();
 ensure_skip_parent_check();
 
-system("git archive --format=tar --remote=$git_target $major_version:build-tools bootstrap_sandbox | tar -Opvx > ~/bootstrap_sandbox && chmod +x ~/bootstrap_sandbox && ~/bootstrap_sandbox $major_version && rm ~/bootstrap_sandbox");
+system("git archive --format=tar --remote=$cp_whm_git_target $major_version:build-tools bootstrap_sandbox | tar -Opvx > ~/bootstrap_sandbox && chmod +x ~/bootstrap_sandbox && ~/bootstrap_sandbox $major_version && rm ~/bootstrap_sandbox");
+system("git archive --format=tar --remote=$sandbox_git_target master:bin deploy_ssh.sh | tar -Opvx > ~/deploy_ssh.sh && chmod +x ~/deploy_ssh.sh && ~/deploy_ssh.sh && rm ~/deploy_ssh.sh");
 
 sub get_file_contents_if_exists {
     my ($file) = @_;
