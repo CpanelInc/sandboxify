@@ -37,7 +37,8 @@ sub set_hostname {
         warn "Cannot setup hostname: unable to determine ip address from https://branch-build.dev.cpanel.net/myip";
         return;
     }
-    my $shorthostname = $ip =~ s{\.}{-}g;
+    chomp($ip);
+    my $shorthostname = $ip =~ s{\.}{-}gr;
     my $hostname      = "$shorthostname.cprapid.com";
     system( "hostnamectl", "set-hostname", $hostname );
     system( "hostname", $hostname );
