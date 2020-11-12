@@ -33,6 +33,7 @@ sub get_file_contents_if_exists {
 }
 
 sub ensure_skip_parent_check {
+    print "Ensuring parent check...\n";
     if ( get_file_contents_if_exists('/var/cpanel/cpanel.config') =~ m{skipparentcheck=1} ) {
         return;
     }
@@ -41,6 +42,7 @@ sub ensure_skip_parent_check {
 }
 
 sub update_bashrc {
+    print "Updating /root/.bashrc...\n";
     if ( get_file_contents_if_exists('/root/.bashrc') =~ m{build-tools} ) {
         return;
     }
