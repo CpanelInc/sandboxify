@@ -23,7 +23,7 @@ ensure_skip_parent_check();
 setup_yum();
 accept_ssh_key($git_host);
 
-my $major_version = get_major_version();
+my $major_version = get_major_version($cp_whm_git_target);
 
 system("git archive --format=tar --remote=$cp_whm_git_target $major_version:build-tools bootstrap_sandbox | tar -Opvx > ~/bootstrap_sandbox && chmod +x ~/bootstrap_sandbox && ~/bootstrap_sandbox $major_version && rm ~/bootstrap_sandbox");
 system("git archive --format=tar --remote=$sandbox_git_target master:bin deploy_ssh.sh | tar -Opvx > ~/deploy_ssh.sh && chmod +x ~/deploy_ssh.sh && ~/deploy_ssh.sh && rm ~/deploy_ssh.sh");
@@ -77,12 +77,22 @@ sub append_file {
 }
 
 sub get_major_version {
+    my ($cp_whm_git_target) = @_;
     if ( -x '/usr/local/cpanel/cpanel' ) {
         return get_major_version_from_cpanel_install();
     }
 
     my @tiers = sort { $b <=> $a } grep { m{^\d+$} } map { ( split(m{:}) )[0] =~ s{^11\.}{}r } split( m{\n}, `wget -O - http://httpupdate.cpanel.net/cpanelsync/TIERS` );
-    return $tiers[0] + 2;
+
+    my $newest_public_tier = $tiers[0];
+
+    my $dev_tier = $newest_public_tier + 2;
+
+    system("git archive --format=tar --remote=$cp_whm_git_target $dev_tier:build-tools bootstrap_sandbox");
+    if ( $? == 0 ) {
+        return $dev_tier;
+    }
+    return $newest_public_tier;
 }
 
 sub get_major_version_from_cpanel_install {
