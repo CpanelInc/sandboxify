@@ -106,7 +106,7 @@ sub get_major_version {
 
     my $dev_tier = $newest_public_tier + 2;
 
-    system("git archive --format=tar --remote=$cp_whm_git_target $dev_tier:build-tools bootstrap_sandbox");
+    system("git archive --format=tar --remote=$cp_whm_git_target $dev_tier:build-tools bootstrap_sandbox >/dev/null");
     if ( $? == 0 ) {
         return $dev_tier;
     }
