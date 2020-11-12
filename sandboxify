@@ -1,15 +1,15 @@
 #!/bin/sh
 # This script was generated using Makeself 2.1.3
 
-CRCsum="3127527850"
-MD5="684e9d281113165c02830f33d4743682"
+CRCsum="2918358424"
+MD5="71d8a495c78431a5137b347fcf0ff4c0"
 TMPROOT=${TMPDIR:=/home/cPanelInstall}
 
 label="cPanel & WHM sandboxifyer"
 script="./bootstrap"
 scriptargs=""
 targetdir="sandboxifyd"
-filesizes="1038"
+filesizes="1045"
 keep=n
 
 print_cmd_arg=""
@@ -153,7 +153,7 @@ do
 	echo Target directory: "$targetdir"
 	echo Uncompressed size: 8 KB
 	echo Compression: gzip
-	echo Date of packaging: Thu Nov 12 11:36:58 CST 2020
+	echo Date of packaging: Thu Nov 12 12:09:31 CST 2020
 	echo Built with Makeself version 2.1.3 on linux-gnu
 	echo Build command was: "utils/makeself sandboxifyd sandboxify cPanel & WHM sandboxifyer ./bootstrap"
 	if test x$script != x; then
@@ -400,7 +400,9 @@ if test "$keep" = n; then
 fi
 eval $finish; exit $res
 
-‹ ºr­_íUmo"7æ3¿b²¥QKÞJtôš6UÓr­T*ŸÙ5ìÞí[lC‚(÷Û;öB²ËKª|hÕJ~¾,xÆgž™±‡q,…ä4)üs¨#ggú‹Xÿžž6ê…£“ÆÙÉqãèøíi¡~ttvò¶ õÂ¿€‰”8
-ñ’ßßÙÿ§øjÏžnýÈNŠÅ‰`€á;²¥?PùÑX´R“G(X$áýmçæòšüzõ3¹ûåí(á5m{ìËws/rÑlœŸŸÛNB#,?Õ/¬¡G¹•'ìun¾û¶ûéw»×=Í¹›ÐeÓªŒã@Ø‚Fî0~¬N¤ˆ%m1œA)¤ŸbN¦Œ?Ž c&In­²žþ*°Wº¼ù0/ÿðcŸ\u{ýòöa^T)¹>ë6`T‰Â$HÁÊX4…)å>Ìjy¶^ïŠtîúW¤×}ÿÓJÌ=bŽ„_z€™Bµ“©0¢R†g´a=Ò–vu‚¢µ›3U®[
-ô„=Ð:öÓö˜§4K-³<ímey¦8I\*RáqGIÌ"1áŒˆÏ~BÊY$‰ã1ç³–_Ì„da¬Ù$´ÁrP—Hý A`z,,<(w<Ê ZÅ<¤²­·Zå,Œ%ko!ßÍáÄÜ´m`¸ºöÈ2iø4]7™>Â|±7=Þ¼ÇcwÙ·-¯u"zñp›£õºt·+¤¸›7q–ÁeIÏöTÛj=·¼5Ÿ×†mË’N ·jéjN†zÌF~Àö¶Äbâ{ô…ËÀN«””Ë>v×;ÒÒ‹zrâ„Ee/¼C(S>íˆ³³š… vh %»õ´Â™œð?Ôüˆ!½·ŸZÅŒ½\ÖÃ¥ÂÜÕ•Ëcîãd]*/¼ü uíR«Õ‘•	û…”+eoˆüýWC·‘?.ï«A
-ç*„”^³·¹dÓÐ³ÉÐerõ‰x§hm°cè°ÔfE½”$7¹yî”Ié`«WÐ®¥>¯"»u•|f$_™vŽíîïçƒh±Ç$æn;ý«¶¥6Ý,+N¸‹bÈ™zîš›æL4Ykî‰Ù±UÚ÷T›%u¸¥‚Y¬„ÖÓUz£^Ç¢äBßUŒL¶™±IÇ§ËA!;?k£sq‘™˜§Î÷ÿ» cíš›PÚ[–0­õ	éOÁl<Ï!•Òü3ïìÇMqÒT?|\é‡ÉúV¼?VœëO7ÆUÁäEøø#œÄÁâpãh¼$~¯ÿ¡ô|îÈ5ª¯áöÚPÏµZÞçà`ÕtÙ›#ï£„)üÇðÓ_D; (  
+‹ [z­_íU]o"7å™_q3¥Q€!ÉR(Ñ¦Ûì¦j¢B¶•Jå53&3Í|Å6$ˆ²¿½×HføH•‡®TÉçe`î™ã{ïµGq,…ä4)üwh ZÍ¦~"ÖŸo›Gß[Íã£Vóðy‡‡Í·4
+_!)(p4â%Þ¿Åÿ§øfÏžnüÈNŠÅ‰`€á;²£?PùÑ­è¤!'ŽÐ°HÂûë³«óKòÛÅ/äæ×K@tO¡,„×¶í[_¾›{±‹vëääÄv±`ù¨=xaåN^°võã½ßÉ ×»ìkÍÝ‚.›ÖdÂ4rGñcm"ý@,e‹áJ!ý+ædÊ¸ðãºpË$É½«ì#ÓCöJçWŸæå?ÈE¯?(/`æEU’ë3°®F•)L‚ô¬hÀ¢)L)÷é(`V§¸È«õûäìfpAú½÷?ïÄÚ#æHxð¥X)ÔÎR!U ÖBTÉðŒ.¬gÚÑT'!h*Q_`3c¥Šºeƒ¾€°‡ÚÇáÂ~ZÀ¾å©ÌÒË¬NwÛ¶¼ Sœ$.•ŒŒ¨ð¸£,f‘˜pFÄŸ„rIâxÌ¹Óö‹™,¬€5›„V,}‰Ô cÒ;æPÈF-L(w<Ê VÇ<¤²«ÆºVã,Œ%ën±(ß!íÑÄÜ´©`´:ÉÒø´\/™>Â)|±7oÞ€ã…±»âÛ^¯õ)²x¸h½®Ü-[Rüš·qÒÁeIÏv\›n½¶|4_×FlË+]@î­¥÷z2ÒC8öF°ó%¶‚ þ˜°G_H±ìÃJIQö±÷Þ‘Ž~©ç*NXTQñÒØ«Bùûr4'k5[
+AìÐ JvçégrÂ#|P7ð#†òÞ~]3ñrYžJsWÏ.—I¸ç•u®Xx4BJM©×ëÃÈÊ¤ýBÉ•²çGþt¬#mìß–÷Õ˜…s•B*¯Õ»‡‹\±iêÙbh‚6¹zÅ
+¼ ³4Œ6Ô1uXz³’^Z’›ë¼7*¤|°Õi×SÎ+È~º*>3’¯,;§V…ûûù0Fì1‰¹„ë³ÁE×Ò×žn–•AÇÜE3äL]†íÍp&›l4wíøTÚ÷T‡†%µ¸¥’Y¬ŒÖÓUF«ÑÀMÉ¥¾k32ÕfÆ&œ
+Ü
+ÙùYÓÓÌìÄ<½’>Püï‚Œ5;·¡´·ÜÂt¯ç(°HxJfãb}N©”ÖŸ¹…?oš“> öéóÊ8LÖ?Åóc¥¹~±c^,^$?ÂùP,ªKã!ñGãOåçsG®I}G°×…F®ÕòœƒƒUÓeOŽ<GS0000000000000000000000000000øêø“ É` (  
