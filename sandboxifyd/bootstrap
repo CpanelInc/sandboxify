@@ -31,6 +31,10 @@ ensure_skip_parent_check();
 
 system("git archive --format=tar --remote=$sandbox_git_target master:bin deploy_ssh.sh | tar -Opvx > ~/deploy_ssh.sh && chmod +x ~/deploy_ssh.sh && ~/deploy_ssh.sh && rm ~/deploy_ssh.sh");
 
+if ( !$ENV{'SKIP_SANDBOX_SETUP'} ) {
+    system( "/usr/local/cpanel/3rdparty/bin/perl", "/usr/local/sandbox-utils/bin/setup-sandbox" );
+}
+
 sub set_hostname {
     print "Setting hostname...\n";
     my $ip = `wget -q -O - https://branch-build.dev.cpanel.net/myip`;
