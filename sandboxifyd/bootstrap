@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use feature 'say';
 
 use constant CPANEL_WHM_URL    => 'ssh://git@{host}:7999/cpanel/cpanel-whm.git';
 use constant SANDBOX_TOOLS_URL => 'ssh://git@{host}:7999/dev-tools/sandbox-utils.git';
@@ -18,9 +19,10 @@ my $git_host           = $ENV{'GIT_HOST'};
 my $cp_whm_git_target  = CPANEL_WHM_URL    =~ s/\{host\}/$git_host/gr;
 my $sandbox_git_target = SANDBOX_TOOLS_URL =~ s/\{host\}/$git_host/gr;
 
+setup_ssh_for_git();
 set_hostname();
 update_bashrc();
-setup_yum();
+setup_package_manager();
 accept_ssh_key($git_host);
 
 my $major_version = get_major_version($cp_whm_git_target);
@@ -56,12 +58,44 @@ sub accept_ssh_key {
     return;
 }
 
+my %setup_commands = (
+    dnf => \&setup_dnf,
+    yum => \&setup_yum,
+    apt => \&setup_apt,
+);
+
+sub setup_package_manager {
+    say "Setting up the package manager...";
+
+    if ( -x '/usr/bin/dnf' ) {
+        setup_dnf();
+    }
+    elsif ( -x '/usr/bin/yum' ) {
+        setup_yum();
+    }
+    elsif ( -x '/usr/bin/apt-get' ) {
+        setup_apt();
+    }
+    else {
+        die "No supported package manager found";
+    }
+}
+
+sub setup_dnf {
+    say "Using DNF";
+    system( "dnf", "clean", "all" );
+    system( "dnf", "makecache" );
+}
+
 sub setup_yum {
+    say "Using YUM";
     system( "yum", "clean", "all" );
     system( "yum", "makecache" );
-    system( "yum", "makecache" );
+}
 
-    return;
+sub setup_apt {
+    say "Using APT";
+    system( "apt-get", "update" );
 }
 
 sub get_file_contents_if_exists {
@@ -71,6 +105,22 @@ sub get_file_contents_if_exists {
         return readline($fh);
     }
     return '';
+}
+
+sub setup_ssh_for_git {
+    my $openssh_version = get_openssh_version();
+    if ( $openssh_version >= 8.8 ) {
+        say "Using SSH compatibility mode";
+        $ENV{'GIT_SSH_COMMAND'} = "ssh -o HostKeyAlgorithms=+ssh-rsa";
+    }
+}
+
+sub get_openssh_version {
+    my $version_output = `ssh -V 2>&1`;
+    if ( $version_output =~ /OpenSSH_(\d+\.\d+)/ ) {
+        return $1;
+    }
+    return 0;
 }
 
 sub ensure_skip_parent_check {
